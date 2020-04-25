@@ -6,7 +6,6 @@ class TasksController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -16,17 +15,16 @@ class TasksController < ApplicationController
   def create
       @task = current_user.tasks.build(task_params)
     if @task.save
-      flash[:success] = 'ステータスとタスク が正常に投稿されました'
+      flash[:success] = 'タスク が正常に投稿されました'
       redirect_to @task
     else
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
-      flash.now[:danger] = 'ステータスとタスク が投稿されませんでした'
+      flash.now[:danger] = 'タスク が投稿されませんでした'
       render :new
     end
   end
 
   def edit
-      
   end
 
   def update
@@ -45,7 +43,7 @@ class TasksController < ApplicationController
       
     @task.destroy
 
-    flash[:success] = 'Task は正常に削除されました'
+    flash[:success] = 'タスクは正常に削除されました'
     redirect_to tasks_url
   end
   
